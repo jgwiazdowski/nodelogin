@@ -1,11 +1,15 @@
 // const mysql = require("mysql");
 const express = require("express");
+const cors = require("cors");
+
 // const request = require("request");
 // const session = require("express-session");
 // const bodyParser = require("body-parser");
 // const path = require("path");
-const port = 8000;
-const cors = require("cors");
+
+require('dotenv').config()
+const PORT = process.env.PORT || 8000;
+
 
 // const connection = mysql.createConnection({
 //   host: "localhost",
@@ -15,6 +19,7 @@ const cors = require("cors");
 // });
 
 const app = express();
+app.use(cors());
 // app.use(
 //   session({
 //     secret: "secret",
@@ -79,5 +84,6 @@ app.get(`/someWebsite`, (req, res) => {
   res.json(someValues);
 });
 
-app.use(cors());
-app.listen(port);
+app.listen(PORT, () => {
+  console.log(`Backend running at ${process.env.APP_URL}:${PORT}`)
+})
